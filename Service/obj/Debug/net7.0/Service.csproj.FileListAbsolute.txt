@@ -29,3 +29,4 @@ C:\Users\Maria\Documents\Desafios de programação\MonitorHardware\Service\obj\D
 C:\Users\Maria\Documents\Desafios de programação\MonitorHardware\Service\obj\Debug\net7.0\Service.pdb
 C:\Users\Maria\Documents\Desafios de programação\MonitorHardware\Service\obj\Debug\net7.0\Service.genruntimeconfig.cache
 C:\Users\Maria\Documents\Desafios de programação\MonitorHardware\Service\obj\Debug\net7.0\ref\Service.dll
+C:\Users\Maria\Documents\Desafios de programação\MonitorHardware\Service\bin\Debug\net7.0\OpenHardwareMonitorLib.dll

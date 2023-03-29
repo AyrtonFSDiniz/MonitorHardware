@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using OpenHardwareMonitor.Hardware;
 
 namespace Service
 {
@@ -7,6 +6,15 @@ namespace Service
     {
         static void Main(string[] args)
         {
+            Computer computer = new Computer();
+            computer.Open();
+            computer.CPUEnabled = true;
+            computer.GPUEnabled = true;
+            computer.RAMEnabled = true;
+            computer.HDDEnabled = true;
+            computer.MainboardEnabled = true;
+            computer.FanControllerEnabled = true;
+
             int interval = 3000;
             Console.WriteLine("##### Monitor de Hardware #####");
             Console.WriteLine();
@@ -21,84 +29,22 @@ namespace Service
                 Console.WriteLine("Valor inválido, o valor padrão será utilizado.");
             }
 
-            PerformanceCounter cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-            PerformanceCounter ramCounter = new PerformanceCounter("Memory", "Available MBytes");
-            PerformanceCounter diskPhysicalCounter = new PerformanceCounter("PhysicalDisk", "% Disk Time", "_Total");
-            PerformanceCounter diskLogicalCounter = new PerformanceCounter("LogicalDisk", "% Disk Time", "_Total");
-            //PerformanceCounter cpuTempCounter = new PerformanceCounter("Thermal Zone Information", "Temperature", "CPU");
-            //PerformanceCounter gpuTempCounter = new PerformanceCounter("Thermal Zone Information", "Temperature", "GPU");
-
             while (true)
             {
-                Console.WriteLine("CPU: " + cpuCounter.NextValue() + "%");
-                Console.WriteLine("RAM: " + ramCounter.NextValue() + "MB");
-                Console.WriteLine("Disk (Physical): " + diskPhysicalCounter.NextValue() + "%");
-                Console.WriteLine("Disk (Logical): " + diskLogicalCounter.NextValue() + "%");
-                //Console.WriteLine("CPU Temperature: " + cpuTempCounter.NextValue() + "°C");
-                //Console.WriteLine("GPU Temperature: " + gpuTempCounter.NextValue() + "°C");
-                Console.WriteLine();
-                System.Threading.Thread.Sleep(3000);
-            }
-        }
-
-        private string ObtainProcessName()
-    {
-        string baseProcessName;
-        string processName = null;
-        int processId;
-        bool notFound = true;
-        int processOptionsChecked = 0;
-        int maxNrOfParallelProcesses = 3 + 1;
-
-        try
-        {
-            baseProcessName = Process.GetCurrentProcess().ProcessName;
-        }
-        catch (Exception exception)
-        {
-            return null;
-        }
-
-        try
-        {
-            processId = Process.GetCurrentProcess().Id;
-        }
-        catch (Exception exception)
-        {
-            return null;
-        }
-
-        while (notFound)
-        {
-            processName = baseProcessName;
-            if (processOptionsChecked > maxNrOfParallelProcesses)
-            {
-                break;
-            }
-
-            if (1 == processOptionsChecked)
-            {
-                processName = string.Format("{0}_{1}", baseProcessName, processId);
-            }
-            else if (processOptionsChecked > 1)
-            {
-                processName = string.Format("{0}#{1}", baseProcessName, processOptionsChecked - 1);
-            }
-
-            try
-            {
-                PerformanceCounter counter = new PerformanceCounter("Process", "ID Process", processName);
-                if (processId == (int)counter.NextValue())
+                foreach (var hardware in computer.Hardware)
                 {
-                    notFound = !true;
+                    hardware.Update();
+                    Console.WriteLine("Hardware: " + hardware.Name);
+                    Console.WriteLine("Hardware Type: " + hardware.HardwareType);
+
+                    foreach (var sensor in hardware.Sensors)
+                    {
+                        Console.WriteLine("-> Sensor: " + sensor.Name + " Valor: " + sensor.Value);
+                    }
+                    Console.WriteLine();
                 }
+                System.Threading.Thread.Sleep(interval);
             }
-            catch (Exception)
-            {
-            }
-            processOptionsChecked++;
         }
-        return processName;
-    }
     }
 }

@@ -44,6 +44,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "OpenHardwareMonitor": {
+              "target": "Package",
+              "version": "[0.9.6, )"
+            },
             "System.Diagnostics.PerformanceCounter": {
               "target": "Package",
               "version": "[7.0.0, )"
