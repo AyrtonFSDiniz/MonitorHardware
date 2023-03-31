@@ -1,4 +1,5 @@
 ﻿using OpenHardwareMonitor.Hardware;
+using System.Management;
 
 namespace Service
 {
