@@ -20,6 +20,13 @@ namespace Service
                 processComputerDictionary.Add("CurrentClockSpeed", processComputerObject["CurrentClockSpeed"].ToString());
                 processComputerDictionary.Add("L2CacheSize", processComputerObject["L2CacheSize"].ToString());
                 processComputerDictionary.Add("L3CacheSize", processComputerObject["L3CacheSize"].ToString());
+                Console.WriteLine(processComputerObject["Name"].ToString());
+                Console.WriteLine(processComputerObject["NumberOfCores"].ToString());
+                Console.WriteLine(processComputerObject["NumberOfLogicalProcessors"].ToString());
+                Console.WriteLine(processComputerObject["MaxClockSpeed"].ToString());
+                Console.WriteLine(processComputerObject["CurrentClockSpeed"].ToString());
+                Console.WriteLine(processComputerObject["L2CacheSize"].ToString());
+                Console.WriteLine(processComputerObject["L3CacheSize"].ToString());
             }
 
             var processComputerSystem = new ManagementObjectSearcher("SELECT * FROM Win32_ComputerSystem");
@@ -29,8 +36,15 @@ namespace Service
             {
                 var processComputerSystemObject = (ManagementObject)item;
                 processComputerSystemDictionary.Add("Manufacturer", processComputerSystemObject["Manufacturer"].ToString());
-                processComputerSystemDictionary.Add("Model", processComputerSystemObject["Model"].ToString());
+                processComputerSystemDictionary.Add("ModelComputer", processComputerSystemObject["Model"].ToString());
                 processComputerSystemDictionary.Add("TotalPhysicalMemory", processComputerSystemObject["TotalPhysicalMemory"].ToString());
+                processComputerSystemDictionary.Add("TotalVirtualMemorySize", processComputerSystemObject["TotalVirtualMemorySize"].ToString());
+                processComputerSystemDictionary.Add("TotalVisibleMemorySize", processComputerSystemObject["TotalVisibleMemorySize"].ToString());
+                Console.WriteLine(processComputerSystemObject["Manufacturer"].ToString());
+                Console.WriteLine(processComputerSystemObject["Model"].ToString());
+                Console.WriteLine(processComputerSystemObject["TotalPhysicalMemory"].ToString());
+                Console.WriteLine(processComputerSystemObject["TotalVirtualMemorySize"].ToString());
+                Console.WriteLine(processComputerSystemObject["TotalVisibleMemorySize"].ToString());
             }
 
             var processComputerSystemProduct = new ManagementObjectSearcher("SELECT * FROM Win32_ComputerSystemProduct");
@@ -81,17 +95,17 @@ namespace Service
                 processComputerSystemBaseBoardDictionary.Add("SerialNumber", processComputerSystemBaseBoardObject["SerialNumber"].ToString());
             }
 
-            var processComputerSystemDiskDrive = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive");
-            var processComputerSystemDiskDriveCollection = processComputerSystemDiskDrive.Get();
-            Dictionary<string, string> processComputerSystemDiskDriveDictionary = new Dictionary<string, string>();
-            foreach (var item in processComputerSystemDiskDriveCollection)
-            {
-                var processComputerSystemDiskDriveObject = (ManagementObject)item;
-                processComputerSystemDiskDriveDictionary.Add("Model", processComputerSystemDiskDriveObject["Model"].ToString());
-                processComputerSystemDiskDriveDictionary.Add("InterfaceType", processComputerSystemDiskDriveObject["InterfaceType"].ToString());
-                processComputerSystemDiskDriveDictionary.Add("Size", processComputerSystemDiskDriveObject["Size"].ToString());
-                processComputerSystemDiskDriveDictionary.Add("SerialNumber", processComputerSystemDiskDriveObject["SerialNumber"].ToString());
-            }
+            //var processComputerSystemDiskDrive = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive");
+            //var processComputerSystemDiskDriveCollection = processComputerSystemDiskDrive.Get();
+            //Dictionary<string, string> processComputerSystemDiskDriveDictionary = new Dictionary<string, string>();
+            //foreach (var item in processComputerSystemDiskDriveCollection)
+           // {
+           //    var processComputerSystemDiskDriveObject = (ManagementObject)item;
+           //    processComputerSystemDiskDriveDictionary.Add("ModelDiskDrive", processComputerSystemDiskDriveObject["Model"].ToString());
+           //     processComputerSystemDiskDriveDictionary.Add("InterfaceType", processComputerSystemDiskDriveObject["InterfaceType"].ToString());
+           //   processComputerSystemDiskDriveDictionary.Add("Size", processComputerSystemDiskDriveObject["Size"].ToString());
+           //     processComputerSystemDiskDriveDictionary.Add("SerialNumber", processComputerSystemDiskDriveObject["SerialNumber"].ToString());
+            //}
 
             var processComputerSystemVideoController = new ManagementObjectSearcher("SELECT * FROM Win32_VideoController");
             var processComputerSystemVideoControllerCollection = processComputerSystemVideoController.Get();
@@ -111,11 +125,11 @@ namespace Service
             foreach (var item in processComputerSystemNetworkAdapterCollection)
             {
                 var processComputerSystemNetworkAdapterObject = (ManagementObject)item;
-                processComputerSystemNetworkAdapterDictionary.Add("Name", processComputerSystemNetworkAdapterObject["Name"].ToString());
-                processComputerSystemNetworkAdapterDictionary.Add("MACAddress", processComputerSystemNetworkAdapterObject["MACAddress"].ToString());
-                processComputerSystemNetworkAdapterDictionary.Add("Manufacturer", processComputerSystemNetworkAdapterObject["Manufacturer"].ToString());
-                processComputerSystemNetworkAdapterDictionary.Add("NetConnectionID", processComputerSystemNetworkAdapterObject["NetConnectionID"].ToString());
-                processComputerSystemNetworkAdapterDictionary.Add("NetConnectionStatus", processComputerSystemNetworkAdapterObject["NetConnectionStatus"].ToString());
+                //processComputerSystemNetworkAdapterDictionary.Add("Name", processComputerSystemNetworkAdapterObject["Name"].ToString());
+                
+                //processComputerSystemNetworkAdapterDictionary.Add("Manufacturer", processComputerSystemNetworkAdapterObject["Manufacturer"].ToString());
+                //processComputerSystemNetworkAdapterDictionary.Add("NetConnectionID", processComputerSystemNetworkAdapterObject["NetConnectionID"].ToString());
+                //processComputerSystemNetworkAdapterDictionary.Add("NetConnectionStatus", processComputerSystemNetworkAdapterObject["NetConnectionStatus"].ToString());
             }
 
             var processComputerSystemSoundDevice = new ManagementObjectSearcher("SELECT * FROM Win32_SoundDevice");
@@ -124,9 +138,9 @@ namespace Service
             foreach (var item in processComputerSystemSoundDeviceCollection)
             {
                 var processComputerSystemSoundDeviceObject = (ManagementObject)item;
-                processComputerSystemSoundDeviceDictionary.Add("Name", processComputerSystemSoundDeviceObject["Name"].ToString());
-                processComputerSystemSoundDeviceDictionary.Add("Manufacturer", processComputerSystemSoundDeviceObject["Manufacturer"].ToString());
-                processComputerSystemSoundDeviceDictionary.Add("DriverVersion", processComputerSystemSoundDeviceObject["DriverVersion"].ToString());
+                //processComputerSystemSoundDeviceDictionary.Add("Name", processComputerSystemSoundDeviceObject["Name"].ToString());
+                //processComputerSystemSoundDeviceDictionary.Add("Manufacturer", processComputerSystemSoundDeviceObject["Manufacturer"].ToString());
+                //processComputerSystemSoundDeviceDictionary.Add("DriverVersion", processComputerSystemSoundDeviceObject["DriverVersion"].ToString());
             }
             
             var processComputerSystemPrinter = new ManagementObjectSearcher("SELECT * FROM Win32_Printer");
@@ -135,10 +149,10 @@ namespace Service
             foreach (var item in processComputerSystemPrinterCollection)
             {
                 var processComputerSystemPrinterObject = (ManagementObject)item;
-                processComputerSystemPrinterDictionary.Add("Name", processComputerSystemPrinterObject["Name"].ToString());
-                processComputerSystemPrinterDictionary.Add("DriverName", processComputerSystemPrinterObject["DriverName"].ToString());
-                processComputerSystemPrinterDictionary.Add("PortName", processComputerSystemPrinterObject["PortName"].ToString());
-                processComputerSystemPrinterDictionary.Add("Shared", processComputerSystemPrinterObject["Shared"].ToString());
+                //processComputerSystemPrinterDictionary.Add("Name", processComputerSystemPrinterObject["Name"].ToString());
+                //processComputerSystemPrinterDictionary.Add("DriverName", processComputerSystemPrinterObject["DriverName"].ToString());
+                //processComputerSystemPrinterDictionary.Add("PortName", processComputerSystemPrinterObject["PortName"].ToString());
+                //processComputerSystemPrinterDictionary.Add("Shared", processComputerSystemPrinterObject["Shared"].ToString());
             }
 
             var processComputerSystemKeyboard = new ManagementObjectSearcher("SELECT * FROM Win32_Keyboard");
@@ -147,9 +161,9 @@ namespace Service
             foreach (var item in processComputerSystemKeyboardCollection)
             {
                 var processComputerSystemKeyboardObject = (ManagementObject)item;
-                processComputerSystemKeyboardDictionary.Add("Name", processComputerSystemKeyboardObject["Name"].ToString());
-                processComputerSystemKeyboardDictionary.Add("Description", processComputerSystemKeyboardObject["Description"].ToString());
-                processComputerSystemKeyboardDictionary.Add("PNPDeviceID", processComputerSystemKeyboardObject["PNPDeviceID"].ToString());
+                //processComputerSystemKeyboardDictionary.Add("Name", processComputerSystemKeyboardObject["Name"].ToString());
+                //processComputerSystemKeyboardDictionary.Add("Description", processComputerSystemKeyboardObject["Description"].ToString());
+                //processComputerSystemKeyboardDictionary.Add("PNPDeviceID", processComputerSystemKeyboardObject["PNPDeviceID"].ToString());
             }
 
             var processComputerSystemMouse = new ManagementObjectSearcher("SELECT * FROM Win32_PointingDevice");
@@ -158,9 +172,9 @@ namespace Service
             foreach (var item in processComputerSystemMouseCollection)
             {
                 var processComputerSystemMouseObject = (ManagementObject)item;
-                processComputerSystemMouseDictionary.Add("Name", processComputerSystemMouseObject["Name"].ToString());
-                processComputerSystemMouseDictionary.Add("Description", processComputerSystemMouseObject["Description"].ToString());
-                processComputerSystemMouseDictionary.Add("PNPDeviceID", processComputerSystemMouseObject["PNPDeviceID"].ToString());
+                //processComputerSystemMouseDictionary.Add("Name", processComputerSystemMouseObject["Name"].ToString());
+                //processComputerSystemMouseDictionary.Add("Description", processComputerSystemMouseObject["Description"].ToString());
+                //processComputerSystemMouseDictionary.Add("PNPDeviceID", processComputerSystemMouseObject["PNPDeviceID"].ToString());
             }
 
             var processComputerSystemMonitor = new ManagementObjectSearcher("SELECT * FROM Win32_DesktopMonitor");
@@ -169,9 +183,9 @@ namespace Service
             foreach (var item in processComputerSystemMonitorCollection)
             {
                 var processComputerSystemMonitorObject = (ManagementObject)item;
-                processComputerSystemMonitorDictionary.Add("Name", processComputerSystemMonitorObject["Name"].ToString());
-                processComputerSystemMonitorDictionary.Add("Description", processComputerSystemMonitorObject["Description"].ToString());
-                processComputerSystemMonitorDictionary.Add("PNPDeviceID", processComputerSystemMonitorObject["PNPDeviceID"].ToString());
+                //processComputerSystemMonitorDictionary.Add("Name", processComputerSystemMonitorObject["Name"].ToString());
+                //processComputerSystemMonitorDictionary.Add("Description", processComputerSystemMonitorObject["Description"].ToString());
+                //processComputerSystemMonitorDictionary.Add("PNPDeviceID", processComputerSystemMonitorObject["PNPDeviceID"].ToString());
             }
 
             var processComputerSystemSystemEnclosure = new ManagementObjectSearcher("SELECT * FROM Win32_SystemEnclosure");
@@ -180,9 +194,9 @@ namespace Service
             foreach (var item in processComputerSystemSystemEnclosureCollection)
             {
                 var processComputerSystemSystemEnclosureObject = (ManagementObject)item;
-                processComputerSystemSystemEnclosureDictionary.Add("Name", processComputerSystemSystemEnclosureObject["Name"].ToString());
-                processComputerSystemSystemEnclosureDictionary.Add("Description", processComputerSystemSystemEnclosureObject["Description"].ToString());
-                processComputerSystemSystemEnclosureDictionary.Add("PNPDeviceID", processComputerSystemSystemEnclosureObject["PNPDeviceID"].ToString());
+                //processComputerSystemSystemEnclosureDictionary.Add("Name", processComputerSystemSystemEnclosureObject["Name"].ToString());
+                //processComputerSystemSystemEnclosureDictionary.Add("Description", processComputerSystemSystemEnclosureObject["Description"].ToString());
+                //processComputerSystemSystemEnclosureDictionary.Add("PNPDeviceID", processComputerSystemSystemEnclosureObject["PNPDeviceID"].ToString());
             }
 
             var processComputerSystemProcessor = new ManagementObjectSearcher("SELECT * FROM Win32_Processor");
@@ -191,9 +205,9 @@ namespace Service
             foreach (var item in processComputerSystemProcessorCollection)
             {
                 var processComputerSystemProcessorObject = (ManagementObject)item;
-                processComputerSystemProcessorDictionary.Add("Name", processComputerSystemProcessorObject["Name"].ToString());
-                processComputerSystemProcessorDictionary.Add("Description", processComputerSystemProcessorObject["Description"].ToString());
-                processComputerSystemProcessorDictionary.Add("PNPDeviceID", processComputerSystemProcessorObject["PNPDeviceID"].ToString());
+                //processComputerSystemProcessorDictionary.Add("Name", processComputerSystemProcessorObject["Name"].ToString());
+                //processComputerSystemProcessorDictionary.Add("Description", processComputerSystemProcessorObject["Description"].ToString());
+                //processComputerSystemProcessorDictionary.Add("PNPDeviceID", processComputerSystemProcessorObject["PNPDeviceID"].ToString());
             }
 
             var processComputerSystemMemory = new ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMemory");
@@ -202,9 +216,9 @@ namespace Service
             foreach (var item in processComputerSystemMemoryCollection)
             {
                 var processComputerSystemMemoryObject = (ManagementObject)item;
-                processComputerSystemMemoryDictionary.Add("Name", processComputerSystemMemoryObject["Name"].ToString());
-                processComputerSystemMemoryDictionary.Add("Description", processComputerSystemMemoryObject["Description"].ToString());
-                processComputerSystemMemoryDictionary.Add("PNPDeviceID", processComputerSystemMemoryObject["PNPDeviceID"].ToString());
+                //processComputerSystemMemoryDictionary.Add("Name", processComputerSystemMemoryObject["Name"].ToString());
+                //processComputerSystemMemoryDictionary.Add("Description", processComputerSystemMemoryObject["Description"].ToString());
+                //processComputerSystemMemoryDictionary.Add("PNPDeviceID", processComputerSystemMemoryObject["PNPDeviceID"].ToString());
             }
         }
     }
